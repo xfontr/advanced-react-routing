@@ -1,4 +1,5 @@
 const paths = {
+  notFound: "*",
   root: "/",
   home: "/home",
   contact: "/contact",
