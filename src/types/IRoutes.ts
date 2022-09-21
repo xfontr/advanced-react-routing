@@ -1,6 +1,6 @@
-type RenderOptions = "always" | "logged" | "loggedOut";
+export type RenderOptions = "always" | "logged" | "loggedOut";
 
-interface RouteType {
+export interface RouteType {
   path: string;
   renders: RenderOptions;
   navigate?: string;

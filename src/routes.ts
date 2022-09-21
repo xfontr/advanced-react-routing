@@ -10,12 +10,12 @@ const routes: IRoutes = [
   },
   {
     path: paths.home,
-    renders: "logged",
+    renders: "always",
     Page: lazy(() => import("./pages/DummyPage1")),
   },
   {
     path: paths.contact,
-    renders: "loggedOut",
+    renders: "logged",
     Page: lazy(() => import("./pages/DummyPage2")),
   },
   {

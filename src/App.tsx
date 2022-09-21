@@ -5,7 +5,7 @@ import routes from "./routes";
 const App = (): JSX.Element => (
   <div className="app">
     <Suspense fallback="Loading...">
-      <RenderRoutes routes={routes} />
+      <RenderRoutes routes={routes} isLogged={true} />
     </Suspense>
   </div>
 );
