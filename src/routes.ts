@@ -3,6 +3,10 @@ import paths from "./configs/paths";
 
 const routes = [
   {
+    path: paths.root,
+    navigate: paths.home,
+  },
+  {
     path: paths.home,
     Page: lazy(() => import("./pages/DummyPage1")),
   },
