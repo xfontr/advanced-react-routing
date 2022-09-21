@@ -11,7 +11,7 @@ const RenderRoutes = ({ routes }: RenderRoutesProps): JSX.Element => (
       <Route
         key={path}
         path={path}
-        element={Page ? <Page /> : <Navigate to={navigate} />}
+        element={Page ? <Page /> : <Navigate to={navigate!} />}
       />
     ))}
   </Routes>
