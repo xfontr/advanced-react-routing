@@ -5,19 +5,22 @@ import Wrapper from "../../test-utils/Wrapper";
 import RenderRoutes from "../RenderRoutes";
 import { Suspense } from "react";
 import { MemoryRouter } from "react-router-dom";
+import IRoutes from "../../types/IRoutes";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   Navigate: (): JSX.Element => <>falseNavigate</>,
 }));
 
-const fakeRoutes = [
+const fakeRoutes: IRoutes = [
   {
     path: paths.root,
+    renders: "always",
     Page: lazy(() => import("../../pages/DummyPage1")),
   },
   {
     path: paths.home,
+    renders: "always",
     navigate: paths.contact,
   },
 ];
@@ -27,7 +30,7 @@ describe("Given a RenderRoutes component", () => {
     test("Then it should render the components specified by said list", async () => {
       render(
         <Suspense>
-          <RenderRoutes routes={fakeRoutes} />
+          <RenderRoutes routes={fakeRoutes} isLogged={true} />
         </Suspense>,
         { wrapper: Wrapper }
       );
@@ -48,7 +51,7 @@ describe("Given a RenderRoutes component", () => {
       render(
         <MemoryRouter initialEntries={["/home"]}>
           <Suspense>
-            <RenderRoutes routes={fakeRoutes} />
+            <RenderRoutes routes={fakeRoutes} isLogged={true} />
           </Suspense>
         </MemoryRouter>
       );

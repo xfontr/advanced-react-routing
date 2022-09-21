@@ -1,20 +1,14 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import RouteSelector from "../containers/RouteSelector";
 import routes from "../routes";
 
 type RenderRoutesProps = {
   routes: typeof routes;
+  isLogged: boolean;
 };
 
-const RenderRoutes = ({ routes }: RenderRoutesProps): JSX.Element => (
-  <Routes>
-    {routes.map(({ path, Page, navigate }) => (
-      <Route
-        key={path}
-        path={path}
-        element={Page ? <Page /> : <Navigate to={navigate} />}
-      />
-    ))}
-  </Routes>
+const RenderRoutes = ({ routes, isLogged }: RenderRoutesProps): JSX.Element => (
+  <Routes>{routes.map((route) => RouteSelector({ route, isLogged }))}</Routes>
 );
 
 export default RenderRoutes;
