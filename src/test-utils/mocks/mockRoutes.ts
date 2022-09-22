@@ -10,11 +10,13 @@ const mockRoutes: IRoutes = [
   },
   {
     path: paths.home,
+    name: "Home",
     renders: "always",
     navigate: paths.contact,
   },
   {
     path: paths.contact,
+    name: "Contact",
     renders: "logged",
     Page: lazy(() => import("../../pages/DummyPage2")),
   },
