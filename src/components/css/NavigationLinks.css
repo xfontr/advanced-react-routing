@@ -1,0 +1,10 @@
+a {
+  color: darkblue;
+  font-weight: 700;
+  display: block;
+  transition: 0.2s;
+}
+
+a:hover {
+  transform: scale(1.05);
+}

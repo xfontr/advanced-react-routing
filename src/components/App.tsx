@@ -1,7 +1,8 @@
-import RenderRoutes from "./components/RenderRoutes";
+import RenderRoutes from "./RenderRoutes";
 import { Suspense, useState } from "react";
-import routes from "./routes";
-import Layout from "./containers/Layout";
+import routes from "../routes";
+import Layout from "../containers/Layout";
+import "./css/App.css";
 
 const App = (): JSX.Element => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
