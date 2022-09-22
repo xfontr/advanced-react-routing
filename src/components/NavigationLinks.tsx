@@ -14,7 +14,7 @@ const NavigationLinks = ({
     {routes.map(
       (route) =>
         route.name && (
-          <li>
+          <li key={route.name}>
             <Link to={route.path}>{route.name}</Link>
           </li>
         )
