@@ -14,9 +14,19 @@ const NavigationLinks = ({
     {routes.map(
       (route) =>
         route.name && (
-          <li key={route.name}>
-            <Link to={route.path}>{route.name}</Link>
-          </li>
+          <>
+            {isLogged && route.renders === "logged" && (
+              <li key={route.name}>
+                <Link to={route.path}>{route.name}</Link>
+              </li>
+            )}
+
+            {!isLogged && route.renders === "loggedOut" && (
+              <li key={route.name}>
+                <Link to={route.path}>{route.name}</Link>
+              </li>
+            )}
+          </>
         )
     )}
   </>
