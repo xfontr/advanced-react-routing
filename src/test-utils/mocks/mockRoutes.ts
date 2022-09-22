@@ -22,6 +22,7 @@ const mockRoutes: IRoutes = [
   },
   {
     path: paths.contact,
+    name: "Public contact",
     renders: "loggedOut",
     Page: lazy(() => import("../../pages/DummyPage2")),
   },

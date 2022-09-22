@@ -15,6 +15,12 @@ const NavigationLinks = ({
       (route) =>
         route.name && (
           <>
+            {route.renders === "always" && (
+              <li key={route.name}>
+                <Link to={route.path}>{route.name}</Link>
+              </li>
+            )}
+
             {isLogged && route.renders === "logged" && (
               <li key={route.name}>
                 <Link to={route.path}>{route.name}</Link>
