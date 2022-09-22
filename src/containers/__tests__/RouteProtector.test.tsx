@@ -1,9 +1,6 @@
-import { render, renderHook, screen } from "@testing-library/react";
-import paths from "../../configs/paths";
+import { render, screen } from "@testing-library/react";
 import Wrapper from "../../test-utils/Wrapper";
 import RouteProtector from "../RouteProtector";
-import { useLocation, Route, MemoryRouter, Routes } from "react-router-dom";
-import DummyPage1 from "../../pages/DummyPage1";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
