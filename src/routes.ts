@@ -14,9 +14,14 @@ const routes: IRoutes = [
     Page: lazy(() => import("./pages/DummyPage1")),
   },
   {
-    path: paths.contact,
+    path: paths.dashboard,
     renders: "logged",
     Page: lazy(() => import("./pages/DummyPage2")),
+  },
+  {
+    path: paths.signUp,
+    renders: "loggedOut",
+    Page: lazy(() => import("./pages/DummyPage3")),
   },
   {
     path: paths.notFound,
