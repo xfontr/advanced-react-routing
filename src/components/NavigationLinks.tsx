@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import IRoutes from "../types/IRoutes";
+import "./css/NavigationLinks.css";
 
 type NavigationLinksProps = {
   routes: IRoutes;
