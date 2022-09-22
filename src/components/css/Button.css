@@ -1,0 +1,10 @@
+button {
+  border-radius: 1rem;
+  padding: 1rem 1.8rem;
+  background-color: powderblue;
+  color: darkblue;
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+  min-width: 10rem;
+}
