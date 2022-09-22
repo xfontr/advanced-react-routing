@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Wrapper from "../../test-utils/Wrapper";
 import Layout from "../Layout";
 
 describe("Given a Layout component", () => {
@@ -11,7 +12,8 @@ describe("Given a Layout component", () => {
       render(
         <Layout isLogged={true} setIsLogged={mockSetter}>
           {text}
-        </Layout>
+        </Layout>,
+        { wrapper: Wrapper }
       );
 
       const logButton = screen.getByRole("button", { name: "Log out" });
@@ -25,7 +27,8 @@ describe("Given a Layout component", () => {
       render(
         <Layout isLogged={true} setIsLogged={mockSetter}>
           {text}
-        </Layout>
+        </Layout>,
+        { wrapper: Wrapper }
       );
 
       const logButton = screen.getByRole("button", { name: "Log out" });
@@ -40,7 +43,8 @@ describe("Given a Layout component", () => {
       render(
         <Layout isLogged={false} setIsLogged={mockSetter}>
           {text}
-        </Layout>
+        </Layout>,
+        { wrapper: Wrapper }
       );
 
       const logButton = screen.getByRole("button", { name: "Log in" });
