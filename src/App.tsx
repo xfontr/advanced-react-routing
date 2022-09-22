@@ -1,22 +1,18 @@
 import RenderRoutes from "./components/RenderRoutes";
 import { Suspense, useState } from "react";
 import routes from "./routes";
-import Button from "./components/Button";
+import Layout from "./containers/Layout";
 
 const App = (): JSX.Element => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
 
   return (
     <div className="app">
-      <header>
-        <Button type="button" onClick={() => setIsLogged(!isLogged)}>
-          {isLogged ? "Log out" : "Log in"}
-        </Button>
-      </header>
-
-      <Suspense fallback="Loading...">
-        <RenderRoutes routes={routes} isLogged={isLogged} />
-      </Suspense>
+      <Layout isLogged={isLogged} setIsLogged={setIsLogged}>
+        <Suspense fallback="Loading...">
+          <RenderRoutes routes={routes} isLogged={isLogged} />
+        </Suspense>
+      </Layout>
     </div>
   );
 };
