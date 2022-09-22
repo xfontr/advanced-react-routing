@@ -3,6 +3,7 @@
 }
 
 body {
+  font-size: 1.1rem;
   margin: 0;
   font-family: montserrat, sans-serif;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -23,4 +24,8 @@ a {
 
 button {
   font-family: inherit;
+}
+
+p {
+  line-height: 1.5rem;
 }

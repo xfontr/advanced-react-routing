@@ -17,6 +17,14 @@ const Layout = ({
 }: LayoutProps): JSX.Element => (
   <>
     <header className="instructions__header">
+      <div className="instructions__container">
+        <p>
+          Welcome! This is a React project that generates routes and navigation
+          links automatically from a source object. It also protects said routes
+          from logged in or logged out users, depending on the case.
+        </p>
+      </div>
+
       <nav className="instructions__container">
         <span className="instructions__text">
           These links will route you to dummy pages
@@ -25,7 +33,6 @@ const Layout = ({
           <NavigationLinks routes={routes} isLogged={isLogged} />
         </ul>
       </nav>
-
       <div className="instructions__container">
         <span className="instructions__text">
           Log the user in or out and see the avaliable routes
