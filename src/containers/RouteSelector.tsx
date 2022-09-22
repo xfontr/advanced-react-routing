@@ -20,35 +20,43 @@ const RouteSelector = ({
           key={path}
           path={path}
           element={
-            route.Page ? <route.Page /> : <Navigate to={route.navigate!} />
+            route.Page ? (
+              <route.Page key={`${path}-route`} />
+            ) : (
+              <Navigate to={route.navigate!} key={`${path}-redirects`} />
+            )
           }
         />
       )}
 
       {renders === "logged" && (
         <Route
-          key={path}
+          key={`${path}-protector`}
           path={path}
-          element={<RouteProtector isProtected={!isLogged} />}
+          element={
+            <RouteProtector isProtected={!isLogged} key={`${path}-protect`} />
+          }
         >
           <Route
             key={path}
             path={path}
-            element={route.Page && <route.Page />}
+            element={route.Page && <route.Page key={`${path}-route`} />}
           />
         </Route>
       )}
 
       {renders === "loggedOut" && (
         <Route
-          key={path}
+          key={`${path}-protector`}
           path={path}
-          element={<RouteProtector isProtected={isLogged} />}
+          element={
+            <RouteProtector isProtected={isLogged} key={`${path}-protect`} />
+          }
         >
           <Route
             key={path}
             path={path}
-            element={route.Page && <route.Page />}
+            element={route.Page && <route.Page key={`${path}-route`} />}
           />
         </Route>
       )}

@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# React advanced routes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Simple React app with a scalable system that automatically creates and protects (if required) all the routes and navigation links, by simply setting up a config object.**
 
-## Available Scripts
+_Tested with Jest and React Testing Library_
 
-In the project directory, you can run:
+## Summary
 
-### `npm start`
+The app will automatically render a route for each path, as well as a navigation link.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+What's both interesting and useful is that the renders will occur conditionally, depending on the user being or not logged in.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Furthermore, the user won't be allowed to manually go to a specific path (by writing it at the URL), since the RouteProtector component will prevent him to do so - if he is not allowed, of course.
 
-### `npm test`
+## Paths structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+It has a global object that contains all the paths, with the following structure:
 
-### `npm run build`
+```ts
+type RenderOptions = "always" | "logged" | "loggedOut";
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+interface RouteType {
+  path: string;
+  renders: RenderOptions;
+  name?: string;
+  navigate?: string;
+  Page?: React.LazyExoticComponent<() => JSX.Element>;
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+On practice, it looks like this:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```ts
+[
+  {
+    path: paths.root,
+    renders: "always",
+    navigate: paths.home,
+  },
+  {
+    path: paths.home,
+    name: "Home",
+    renders: "always",
+    Page: lazy(() => import("./pages/DummyPage1")),
+  },
+  // ...
+];
+```
 
-### `npm run eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You will need to set up a global object such as the previous one (see the repository routes.ts file to have a more accurate example). The required components are all avaliable in this repository.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+They take a Routes object as props and a boolean to inform about the user status (whether it is logged in or not).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The following components are a must for the routes to work:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- /containters/RouteProtector.tsx
+- /containers/RouteSelector.tsx
+- /components/NavigationLinks.tsx
+- /components/RenderRoutes.tsx

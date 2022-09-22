@@ -8,7 +8,9 @@ type RenderRoutesProps = {
 };
 
 const RenderRoutes = ({ routes, isLogged }: RenderRoutesProps): JSX.Element => (
-  <Routes>{routes.map((route) => RouteSelector({ route, isLogged }))}</Routes>
+  <Routes key="routes">
+    {routes.map((route) => RouteSelector({ route, isLogged }))}
+  </Routes>
 );
 
 export default RenderRoutes;

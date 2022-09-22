@@ -33,6 +33,7 @@ const Layout = ({
           <NavigationLinks routes={routes} isLogged={isLogged} />
         </ul>
       </nav>
+
       <div className="instructions__container">
         <span className="instructions__text">
           Log the user in or out and see the avaliable routes
