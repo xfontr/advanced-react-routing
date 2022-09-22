@@ -73,4 +73,49 @@ describe("Given a RouteSelector component", () => {
       expect(expectedRenderedPage).toBeInTheDocument();
     });
   });
+
+  describe("When instantiated with a route that renders only for loggedOut users and a loggedOut user", () => {
+    test("Then it should render said route", async () => {
+      const dummyText = "Hi! This is a false page (2)";
+
+      render(
+        <MemoryRouter initialEntries={[mockRoutes[2].path]}>
+          <Suspense>
+            <Routes>
+              <Route path={paths.home} element={<>{dummyText}</>} />
+              {RouteSelector({ route: mockRoutes[3], isLogged: false })}
+            </Routes>
+          </Suspense>
+        </MemoryRouter>
+      );
+
+      const heading = await screen.findByRole("heading", {
+        name: dummyText,
+        level: 1,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When instantiated with a route that renders only for loggedOut users and a logged user", () => {
+    test("Then it should not render said route, and redirect to home", async () => {
+      const dummyText = "Home page";
+
+      render(
+        <MemoryRouter initialEntries={[mockRoutes[2].path]}>
+          <Suspense>
+            <Routes>
+              <Route path={paths.home} element={<>{dummyText}</>} />
+              {RouteSelector({ route: mockRoutes[3], isLogged: true })}
+            </Routes>
+          </Suspense>
+        </MemoryRouter>
+      );
+
+      const expectedRenderedPage = await screen.findByText(dummyText);
+
+      expect(expectedRenderedPage).toBeInTheDocument();
+    });
+  });
 });
